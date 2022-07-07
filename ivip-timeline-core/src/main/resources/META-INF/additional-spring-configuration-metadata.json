@@ -1,0 +1,23 @@
+{
+  "properties": [
+    {
+      "name": "ivip.auth.feign.timeline.enabled",
+      "type": "java.lang.String",
+      "description": "Description for ivip.auth.feign.timeline.enabled."
+    },
+    {
+      "name": "ivip.auth.feign.timeline.clientId",
+      "type": "java.lang.String",
+      "description": "Description for ivip.auth.feign.timeline.clientId."
+    },
+    {
+      "name": "ivip.auth.feign.timeline.clientSecret",
+      "type": "java.lang.String",
+      "description": "Description for ivip.auth.feign.timeline.clientSecret."
+    },
+    {
+      "name": "ivip.auth.feign.timeline.accessTokenUri",
+      "type": "java.lang.String",
+      "description": "Description for ivip.auth.feign.timeline.accessTokenUri."
+    }
+  ] }

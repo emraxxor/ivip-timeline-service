@@ -11,9 +11,52 @@
 
     <artifactId>ivip-timeline-core</artifactId>
 
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.emraxxor.ivip</groupId>
+            <artifactId>ivip-common-backend-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.emraxxor.ivip</groupId>
+            <artifactId>ivip-timeline-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.emraxxor.ivip</groupId>
+            <artifactId>ivip-timeline-services</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.emraxxor.ivip</groupId>
+            <artifactId>ivip-timeline-configuration</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>${liquibase.version}</version>
+                <configuration>
+                    <driver>org.h2.Driver</driver>
+                    <url>jdbc:h2:file:${basedir}/h2data/ivip-timeline-h2</url>
+                    <defaultSchemaName>public</defaultSchemaName>
+                    <username>sa</username>
+                    <password>password</password>
+                    <changeLogFile>${basedir}/src/main/resources/migration/liquibase-changelog.xml</changeLogFile>
+                    <outputChangeLogFile>${basedir}/changelog.xml</outputChangeLogFile>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 
 </project>

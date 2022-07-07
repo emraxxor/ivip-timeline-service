@@ -7,6 +7,7 @@
         <module>ivip-timeline-api</module>
         <module>ivip-timeline-core</module>
         <module>ivip-timeline-services</module>
+        <module>ivip-timeline-configuration</module>
     </modules>
 
 

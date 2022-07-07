@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://ivip-postgres:5432/ivip
+    username: postgres
+    password: postgres
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL94Dialect
+
+KEYCLOAK_AUTH_SERVER_URL: http://ivip-keycloak:8080/auth
+
+ivip:
+  swagger:
+    enabled: true
+  services:
+    public:
+      address:  http://ivip-public:9025/ipub

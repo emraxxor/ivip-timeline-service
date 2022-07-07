@@ -1,0 +1,48 @@
+spring:
+  datasource:
+    url: jdbc:h2:file:./h2data/ivip-timeline-h2;DB_CLOSE_DELAY=-1
+    username: admin
+    password: admin
+    driver-class-name: org.h2.Driver
+  jpa:
+    properties:
+      hibernate:
+        synonyms: true
+        dialect: org.hibernate.dialect.H2Dialect
+  kafka:
+    template:
+      default-topic: ivip-topic
+    consumer:
+      bootstrap-servers: localhost:19092,localhost:29092,localhost:39092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: ivip-group
+    producer:
+      bootstrap-servers: localhost:19092,localhost:29092,localhost:39092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        acks: all
+        retries: 10
+        retry.backoff.ms: 1000
+    admin:
+      properties:
+        bootstrap.servers: localhost:19092,localhost:29092,localhost:39092
+
+KEYCLOAK_AUTH_SERVER_URL: http://localhost:8080/auth
+
+ivip:
+  kafka:
+    enabled: true
+    consumer:
+      enabled: true
+    producer:
+      enabled: true
+      topic-name: ivip-topic
+      partition: 3
+      replicas: 1
+  services:
+    public:
+       address: http://localhost:9205/ipub
+  swagger:
+    enabled: true

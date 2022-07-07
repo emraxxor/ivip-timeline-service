@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: ivip-timeline
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+  liquibase:
+    enabled: false
+    change-log: classpath:migration/liquibase-changelog.xml
+
+  profiles:
+    active: local-dev
+server:
+  port: 9026
+  servlet:
+    context-path: /timeline
+
+keycloak:
+  realm: public
+  auth-server-url: ${KEYCLOAK_AUTH_SERVER_URL}
+  resource: ivip-timeline-backend
+  principal-attribute: preferred_username
+  bearer-only: true
+
+ivip:
+  elasticsearch:
+    enabled: true
+    host: localhost
+    port: 9200
+  feign:
+    enabled: true
+  auth:
+    enabled: true
+    feign:
+      public:
+        enabled: true
+        clientId: ivip-public-backend
+        clientSecret: 1572310f-987b-4ca7-8211-319ee480132f
+        accessTokenUri: ${KEYCLOAK_AUTH_SERVER_URL}/realms/public/protocol/openid-connect/token
+      timeline:
+        enabled: true
+        clientId: ivip-timeline-backend
+        clientSecret: 78f469d9-ec90-4f87-b727-5588ba7be53d
+        accessTokenUri: ${KEYCLOAK_AUTH_SERVER_URL}/realms/public/protocol/openid-connect/token
+      photo:
+        enabled: true
+        clientId: ivip-photo-backend
+        clientSecret: 8d57392b-a962-4c43-a4af-2c933d4019b4
+        accessTokenUri: ${KEYCLOAK_AUTH_SERVER_URL}/realms/photo/protocol/openid-connect/token
+  swagger:
+    enabled: true
+
