@@ -6,7 +6,9 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   liquibase:
     enabled: false
     change-log: classpath:migration/liquibase-changelog.xml
